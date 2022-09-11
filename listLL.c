@@ -1,5 +1,8 @@
 /* implementation of list ADT using linked list */
 #include <stdio.h>
+#define receive(x, y)   \
+    printf("%s > ", x); \
+    scanf("%d", &y)
 
 struct node
 {
@@ -23,8 +26,7 @@ int main()
     printf("Menu\n\t0. Help\n\t1. Create\n\t2. Insert\n\t3. Delete\n\t4. Search\n\t5. Display\n\t6. Exit\n");
     do
     {
-        printf("Choice > ");
-        scanf("%d", &ch);
+        receive("Choice", ch);
         switch (ch)
         {
         case 0:
@@ -50,7 +52,7 @@ int main()
             flag = 0;
             break;
         default:
-            printf("[ERROR] Invalid choice\n\n");
+            printf("[ERROR] Invalid choice\nEnter 0 for help\n\n");
         }
     } while (flag);
     return 0;
@@ -58,15 +60,12 @@ int main()
 
 void create()
 {
-    int n, i, item;
-    printf("Create:Size > ");
-    scanf("%d", &n);
+    int n, i;
+    receive("Create:Size", n);
     for (i = 0; i < n; i++)
     {
-        printf("Create:Element > ");
-        scanf("%d", &item);
         struct node *link = (struct node *)malloc(sizeof(struct node));
-        link->data = item;
+        receive("Create:Element", link->data);
         link->next = NULL;
         if (head == NULL)
         {
@@ -84,10 +83,8 @@ void create()
 void insert()
 {
     int item, pos, i;
-    printf("Insert:Element > ");
-    scanf("%d", &item);
-    printf("Insert:Position > ");
-    scanf("%d", &pos);
+    receive("Insert:Element", item);
+    receive("Insert:Position", pos);
     struct node *link = (struct node *)malloc(sizeof(struct node));
     link->data = item;
     link->next = NULL;
@@ -111,8 +108,7 @@ void insert()
 void del()
 {
     int pos, i;
-    printf("Delete:Position > ");
-    scanf("%d", &pos);
+    receive("Delete:Position", pos);
     if (pos == 0)
     {
         struct node *temp = head;
@@ -135,8 +131,7 @@ void del()
 void search()
 {
     int item, i = 0;
-    printf("Search:Element > ");
-    scanf("%d", &item);
+    receive("Search:Element", item);
     struct node *temp = head;
     while (temp != NULL)
     {

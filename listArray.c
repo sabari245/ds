@@ -7,7 +7,7 @@
 
 void create();
 void insert();
-void delete ();
+void del();
 void search();
 void display();
 
@@ -33,7 +33,7 @@ int main()
             insert();
             break;
         case 3:
-            delete ();
+            del();
             break;
         case 4:
             search();
@@ -81,7 +81,7 @@ void insert()
     printf("[SUCCESS] Element inserted\n\n");
 }
 
-void delete ()
+void del()
 {
     receive("Delete:Position", pos);
     pos -= 1;

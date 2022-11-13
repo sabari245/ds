@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+ kind: Deployment
+ metadata:
+   name: plasmaportal-web
+ spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       app: plasmaportal
+   template:
+     metadata:
+       labels:
+         app: plasmaportal
+     spec:
+       containers:
+       - name: plasmaportal
+         image: icr.io/plasmaportal/plasmaportal
+         imagePullPolicy: Always
+         ports:
+         - containerPort: 8000
